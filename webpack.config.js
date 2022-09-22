@@ -70,6 +70,7 @@ function devServerProxyBypass({ path }) {
             || path.startsWith('/lang/')
             || path.startsWith('/sounds/')
             || path.startsWith('/static/')
+            || path.startsWith('/index.html')
             || path.endsWith('.wasm')) {
 
         return path;
@@ -252,7 +253,7 @@ function getDevServerConfig() {
                 warnings: false
             }
         },
-        host: '127.0.0.1',
+        host: '0.0.0.0',
         hot: true,
         proxy: {
             '/': {
