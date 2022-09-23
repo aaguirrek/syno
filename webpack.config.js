@@ -11,8 +11,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
  * The URL of the Jitsi Meet deployment to be proxy to in the context of
  * development with webpack-dev-server.
  */
-const devServerProxyTarget
-    = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://alpha.jitsi.net';
+const devServerProxyTarget  = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://alpha.jitsi.net';
 
 /**
  * Build a Performance configuration object for the given size.
@@ -307,7 +306,7 @@ module.exports = (_env, argv) => {
                     process: 'process/browser'
                 })
             ],
-            performance: getPerformanceHints(perfHintOptions, 4 * 1024 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -317,7 +316,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'alwaysontop')
             ],
-            performance: getPerformanceHints(perfHintOptions, 800 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -331,7 +330,7 @@ module.exports = (_env, argv) => {
                     contextRegExp: /moment$/
                 })
             ],
-            performance: getPerformanceHints(perfHintOptions, 500 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -341,7 +340,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'do_external_connect')
             ],
-            performance: getPerformanceHints(perfHintOptions, 5 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -351,7 +350,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'analytics-ga')
             ],
-            performance: getPerformanceHints(perfHintOptions, 5 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -361,7 +360,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'close3')
             ],
-            performance: getPerformanceHints(perfHintOptions, 128 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
 
         Object.assign({}, config, {
@@ -376,7 +375,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'external_api')
             ],
-            performance: getPerformanceHints(perfHintOptions, 35 * 1024)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             entry: {
@@ -386,7 +385,7 @@ module.exports = (_env, argv) => {
                 ...config.plugins,
                 ...getBundleAnalyzerPlugin(analyzeBundle, 'face-landmarks-worker')
             ],
-            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 2)
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
         }),
         Object.assign({}, config, {
             /**
@@ -413,7 +412,7 @@ module.exports = (_env, argv) => {
             ] },
             plugins: [
             ],
-            performance: getPerformanceHints(perfHintOptions, 200 * 1024),
+            performance: getPerformanceHints(perfHintOptions, 1024 * 1024 * 5),
 
             output: {
                 ...config.output,
