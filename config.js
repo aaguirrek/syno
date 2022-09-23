@@ -4,14 +4,13 @@ if (subdomain) {
 }
 var config = {
     hosts: {
-        domain: 'alpha.jitsi.net',
-
-        muc: 'conference.'+subdomain+'alpha.jitsi.net', // FIXME: use XEP-0030
-        focus: 'focus.alpha.jitsi.net',
+        domain: 'meeting.syno.live',
+        muc: 'conference.'+subdomain+'meeting.syno.live', // FIXME: use XEP-0030
+        focus: 'focus.meeting.syno.live',
     },
     disableSimulcast: false,
 //    enableRemb: false,
-//    enableTcc: true,
+    enableTcc: true,
     resolution: 720,
     constraints: {
         video: {
@@ -28,10 +27,23 @@ var config = {
             }
         }
     },
-    externalConnectUrl: '//alpha.jitsi.net/http-pre-bind',
+    giphy: {
+        // Whether the feature is enabled or not.
+        enabled: true,
+        // SDK API Key from Giphy.
+        sdkKey: 'DnZRpFCK8EaCajP6GAF7dFNCkkd70tVr',
+        // Display mode can be one of:
+        // - tile: show the GIF on the tile of the participant that sent it.
+        // - chat: show the GIF as a message in chat
+        // - all: all of the above. This is the default option
+        displayMode: 'all',
+        // How long the GIF should be displayed on the tile (in miliseconds).
+        tileTime: 5000
+    },
+    externalConnectUrl: '//meeting.syno.live/http-pre-bind',
     analytics: {
 	amplitudeAPPKey: "2719ff8976e947a6cc804bd1bb9c9cc6",
-        whiteListedEvents: ['rtcstats.trace.onclose', 'conference.joined', 'page.reload.scheduled', 'rejoined', 'transport.stats', 'rtcstats.trace.onclose'],
+    whiteListedEvents: ['rtcstats.trace.onclose', 'conference.joined', 'page.reload.scheduled', 'rejoined', 'transport.stats', 'rtcstats.trace.onclose'],
 	rtcstatsEnabled: true,
 	rtcstatsUseLegacy: false,
         rtcstatsEndpoint: "wss://rtcstats-server-pilot.jitsi.net/",
@@ -58,7 +70,7 @@ var config = {
     useStunTurn: true, // use XEP-0215 to fetch STUN and TURN server for the JVB connection
     useIPv6: false, // ipv6 support. use at your own risk
     useNicks: false,
-    bosh: '//alpha.jitsi.net/http-bind', // FIXME: use xep-0156 for that
+    bosh: '//meeting.syno.live/http-bind',
 
     //etherpad_base: 'https://alpha.jitsi.net/etherpad/p/',
     clientNode: 'http://jitsi.org/jitsimeet', // The name of client node advertised in XEP-0115 'c' stanza
@@ -89,28 +101,31 @@ var config = {
     useRtcpMux: true,
     useBundle: true,
     disableSuspendVideo: true,
-//    stereo: true,
+    stereo: true,
     forceJVB121Ratio:  -1,
     enableTalkWhileMuted: true,
+    startWithVideoMuted:true,
+    liveStreamingEnabled: true,
 
-    hiddenDomain: 'recorder.alpha.jitsi.net',
+    hiddenDomain: 'recorder.meeting.syno.live',
     transcribingEnabled: false,
     enableRecording: true,
     liveStreamingEnabled: true,
-    fileRecordingsEnabled: false,
-    fileRecordingsServiceEnabled: false,
-    fileRecordingsServiceSharingEnabled: false,
+    fileRecordingsEnabled: true,
+    fileRecordingsServiceEnabled: true,
+    fileRecordingsServiceSharingEnabled: true,
     requireDisplayName: false,
     recordingType: 'jibri',
     enableWelcomePage: true,
     isBrand: false,
     logStats: false,
-
+/*
     dropbox: {
-        appKey: '3v5iyto7n7az02w'
-    },
+        appKey: 'ubws6ozl41ynrpb',
+        redirectURI: 'https://meeting.syno.live/static/oauth.html'
+    },*/
 
-// To enable sending statistics to callstats.io you should provide Applicaiton ID and Secret.
+    // To enable sending statistics to callstats.io you should provide Applicaiton ID and Secret.
     callStatsID: "294674397",//Application ID for callstats.io API
     callStatsSecret: "9IJJTtOdheZs:MHov7tz0Gc3h/6NYXiNVCqA1tpTmKPH0AdXTYtAKVRY=",//Secret for callstats.io API
     dialInNumbersUrl: 'https://api.jitsi.net/phoneNumberList',
@@ -143,7 +158,7 @@ var config = {
     },
     deploymentInfo: {
         environment: 'alpha',
-        envType: 'dev',
+        envType: 'prod',
         releaseNumber: '',
         shard: 'all',
         region: 'us-west-2',
